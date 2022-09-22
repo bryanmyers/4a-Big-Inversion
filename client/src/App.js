@@ -1,7 +1,8 @@
 import './App.css';
 import PersonCard from './components/PersonCard'
+import {  useState } from 'react'
 
-const people = [
+const data = [
   {
     firstName: 'Bryan',
     lastName: 'Myers',
@@ -23,14 +24,31 @@ const people = [
   {
     firstName: 'Mikala',
     lastName: 'Myers',
-    age: 15,
+    age: 11,
     hairColor: 'Dark Brown'
   }
 ]
 
-const peopleList = people.map((person, index) => <PersonCard key={index} firstName={person.firstName} lastName={person.lastName} age={person.age} hairColor={person.hairColor}/>)
+
 
 function App() {
+
+  const [people, setPeople] = useState(data)
+
+  const peopleList = people.map((person, index) => 
+    <PersonCard
+      key={index}
+      firstName={person.firstName}
+      lastName={person.lastName}
+      age={person.age}
+      hairColor={person.hairColor}
+      people={people}
+      setPeople={setPeople}
+      index={index}
+    />
+  )
+  
+
   return (
     <dl>
       {peopleList}
